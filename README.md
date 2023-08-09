@@ -2,7 +2,7 @@
 
 A graphical user interface (GUI) based tool to calculate the voltage across a resistor (R2) in a series circuit [voltage divider calculator], factoring in various tolerances and temperature coefficients. The tool leverages `tkinter` for the GUI and `matplotlib` for visualizing the data.
 
-![Screenshot of the Application](screenshot.png)  <!-- If you have a screenshot, replace 'path_to_screenshot.png' with the actual path -->
+![Screenshot of the Application](/screenshot.png)  <!-- If you have a screenshot, replace 'path_to_screenshot.png' with the actual path -->
 
 ## Features
 
@@ -33,7 +33,7 @@ cd voltage-calculator
 3. **Run the Application**
 
 ```bash
-python main.py  # Ensure that you have the required dependencies installed.
+python gui_run.py  # Ensure that you have the required dependencies installed.
 ```
 
 Dependencies
