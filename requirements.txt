@@ -1,0 +1,2 @@
+numpy==1.21.2  # Replace with the version you are using.
+matplotlib==3.4.3  # Replace with the version you are using.
