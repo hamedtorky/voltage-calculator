@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 def calculate_voltage():
     # Fetch data from Entry widgets
@@ -57,6 +58,7 @@ def calculate_voltage():
 window = tk.Tk()
 window.title("Voltage Across R2 Calculator")
 
+
 entries = [
     ("Nominal Voltage (V):", '220'),
     ("Voltage Tolerance (%):", '10'),
@@ -71,10 +73,18 @@ entries = [
     ("Temperature Steps:", '146')
 ]
 
+# Load and display the image
+image_path = "image.gif"  # Replace with your image's path
+image = Image.open(image_path)
+photo = ImageTk.PhotoImage(image)
+label_image = tk.Label(window, image=photo)
+label_image.grid(column=4, row=0, rowspan=len(entries) + 25, padx=(0, 25))  # Added padx for padding on the right side.
+
+
 for idx, (label_text, default_value) in enumerate(entries):
     ttk.Label(window, text=label_text).grid(column=0, row=idx, padx=20, pady=5)
     entry = ttk.Entry(window)
-    entry.grid(column=1, row=idx)
+    entry.grid(column=2, row=idx)
     entry.insert(tk.END, default_value)
 
     if label_text.startswith("Temperature Coefficient for R1"):
