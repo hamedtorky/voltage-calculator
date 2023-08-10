@@ -24,6 +24,10 @@ def calculate_voltage():
     # Calculations
     voltage_min_values = []
     voltage_max_values = []
+    R1_min_values = []
+    R1_max_values = []
+    R2_min_values = []
+    R2_max_values = []
     for temperature in temperature_values:
         R1_min = R1_initial * (1 - tolerance_R1) * (1 + temp_coefficient_R1 * (temperature - 25))
         R1_max = R1_initial * (1 + tolerance_R1) * (1 + temp_coefficient_R1 * (temperature - 25))
@@ -40,8 +44,23 @@ def calculate_voltage():
         voltage_min_values.append(voltage_r2_min)
         voltage_max_values.append(voltage_r2_max)
 
+        R1_min_values.append(R1_min)
+        R1_max_values.append(R1_max)
+        R2_min_values.append(R2_min)
+        R2_max_values.append(R2_max)
+
+    R1_min_avg = np.mean(R1_min_values)
+    R1_max_avg = np.mean(R1_max_values)
+    R2_min_avg = np.mean(R2_min_values)
+    R2_max_avg = np.mean(R2_max_values)
+
     # Plotting the results
-    plt.figure(figsize=(10, 6))
+    plt.annotate(f"R1 Min Avg: {R1_min_avg:.2f} Ohms", xy=(0.7, 0.28), xycoords="axes fraction", fontsize=9, color="red")
+    plt.annotate(f"R1 Max Avg: {R1_max_avg:.2f} Ohms", xy=(0.7, 0.24), xycoords="axes fraction", fontsize=9, color="red")
+    plt.annotate(f"R2 Min Avg: {R2_min_avg:.2f} Ohms", xy=(0.7, 0.20), xycoords="axes fraction", fontsize=9, color="blue")
+    plt.annotate(f"R2 Max Avg: {R2_max_avg:.2f} Ohms", xy=(0.7, 0.16), xycoords="axes fraction", fontsize=9, color="blue")
+
+
     plt.plot(temperature_values, voltage_min_values, label='Min Voltage')
     plt.plot(temperature_values, voltage_max_values, label='Max Voltage')
     plt.fill_between(temperature_values, voltage_min_values, voltage_max_values, color='yellow', alpha=0.3)
